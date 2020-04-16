@@ -1,7 +1,7 @@
 const express = require('express');
 const viewsController = require('../controllers/viewsController');
 const authController = require('../controllers/authController');
-
+console.log('ejejejjeje');
 const router = express.Router();
 
 router.get('/', authController.isLoggedIn, viewsController.getOverview);
