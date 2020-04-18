@@ -58,7 +58,6 @@ exports.uploadTourImages = upload.fields([
 
 exports.resizeTourImages = catchAsync(async(req, res, next) => {
     if (!req.files.imageCover || !req.files.images) return next();
-    console.log('funciona');
     // 1) Cover image
     req.body.imageCover = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
     await sharp(req.files.imageCover[0].buffer)
@@ -80,7 +79,7 @@ exports.resizeTourImages = catchAsync(async(req, res, next) => {
             req.body.images.push(filename);
         })
     );
-    console.log(req.body);
+
     next();
 });
 
@@ -305,7 +304,6 @@ exports.getToursWithin = catchAsync(async(req, res, next) => {
             }
         }
     });
-    console.log(distance, lat, lng, unit);
 
     res.status(200).json({
         status: 'success',

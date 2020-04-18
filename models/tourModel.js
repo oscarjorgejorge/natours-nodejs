@@ -130,8 +130,6 @@ tourSchema.virtual('reviews', {
 
 //DOCUMENT MIDDLEWARE: runs before .save() and .create()   (not run in .insertMany())
 tourSchema.pre('save', function(next) {
-    // console.log('pre-save');
-    // console.log(this);
     this.slug = slugify(this.name, { lower: true });
     next();
 });
@@ -141,18 +139,6 @@ tourSchema.pre('save', function(next) {
 
 //     this.guides = await Promise.all(guidesPromises);
 
-//     next();
-// });
-
-// tourSchema.pre('save', function(next) {
-//     console.log('Will save document... ');
-//     next();
-// });
-
-// tourSchema.post('save', function(doc, next) {
-//             console.log('post-save');
-
-//     console.log(doc);
 //     next();
 // });
 
@@ -172,17 +158,14 @@ tourSchema.pre(/^find/, function(next) {
     next();
 });
 
-tourSchema.post(/^find/, function(docs, next) {
-    console.log(`Query took ${Date.now() - this.start} milliseconds`);
-    next();
-});
+// tourSchema.post(/^find/, function(docs, next) {
+//     console.log(`Query took ${Date.now() - this.start} milliseconds`);
+//     next();
+// });
 
 // AGGREGATION MIDDLEWARE
 // tourSchema.pre('aggregate', function(next) {
 //     this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
-//     console.log(this);
-//     console.log(this.pipeline());
-
 //     next();
 // });
 
